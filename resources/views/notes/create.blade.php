@@ -59,6 +59,5 @@
             border-color: #4a5568; /* Tailwind dark border color */
         }
     </style>
-
 </x-app-layout>
 

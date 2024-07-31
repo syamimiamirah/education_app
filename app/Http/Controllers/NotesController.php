@@ -20,6 +20,7 @@ class NotesController extends Controller
 
         // Categorize notes
         $groupedNotes = [
+            'Today' => [],
             'Yesterday' => [],
             'Previous 7 days' => [],
             'Previous 30 days' => [],
@@ -28,7 +29,9 @@ class NotesController extends Controller
         foreach ($notes as $note) {
             $created_at = Carbon::parse($note->created_at);
 
-            if ($created_at->isYesterday()) {
+            if ($created_at->isToday()) {
+                $groupedNotes['Today'][] = $note;
+            } elseif ($created_at->isYesterday()) {
                 $groupedNotes['Yesterday'][] = $note;
             } elseif ($created_at->between(Carbon::now()->subDays(7), Carbon::now())) {
                 $groupedNotes['Previous 7 days'][] = $note;
@@ -83,7 +86,45 @@ class NotesController extends Controller
             'content' => $request->content,
             'user_id' => Auth::id(),
         ]);
+        $message="successfully add!";
+        echo "<script type='text/javascript'>alert('$message');</script>";
 
         return redirect()->route('notes.index')->with('success', 'Note created successfully.');
+    }
+    
+    public function edit($id)
+    {
+        $note = Note::findOrFail($id); // Fetch the note by ID
+        return view('notes.edit', compact('note')); // Return the edit view with note data
+    }
+
+    public function update(Request $request, Note $note)
+    {
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'content' => 'required|string',
+        ]);
+
+        if ($note->user_id !== Auth::id()) {
+            return response()->json(['error' => 'Unauthorized'], 403);
+        }
+
+        $note->update([
+            'title' => $request->title,
+            'content' => $request->content,
+        ]);
+
+        return response()->json(['success' => 'Note renamed successfully.']);
+    }
+
+    public function destroy(Note $note)
+    {
+        if ($note->user_id !== Auth::id()) {
+            return response()->json(['error' => 'Unauthorized'], 403);
+        }
+
+        $note->delete();
+
+        return response()->json(['success' => 'Note deleted successfully.']);
     }
 }
