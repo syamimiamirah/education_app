@@ -36,8 +36,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/notes/create', [NotesController::class, 'create'])->name('notes.create');
     Route::post('/notes', [NotesController::class, 'store'])->name('notes.store');
     Route::delete('/notes/{note}', [NotesController::class, 'destroy'])->name('notes.destroy');
-    // Show the form for editing a specific note
+    Route::patch('/notes/{note}', [NotesController::class, 'update'])->name('notes.update');
     Route::get('/notes/{note}/edit', [NotesController::class, 'edit'])->name('notes.edit'); // This is important for editing
+});
+
+Route::middleware('auth')->group(function () {
+    Route::get('/pomodoro', function (){ return view('pomodoro.index');})->name('pomodoro.index');
 });
 
 require __DIR__.'/auth.php';
