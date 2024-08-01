@@ -48,7 +48,7 @@
             background: repeating-linear-gradient(
                 #2d3748, /* Tailwind dark background color */
                 #2d3748 24px,
-                #4a5568 25px /* Tailwind dark border color */
+                #4a5568 27px /* Tailwind dark border color */
             );
             color: white; /* White font color */
             border-radius: 0.375rem; /* Border radius same as text input */

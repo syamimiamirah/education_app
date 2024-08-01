@@ -89,7 +89,7 @@ class NotesController extends Controller
         $message="successfully add!";
         echo "<script type='text/javascript'>alert('$message');</script>";
 
-        return redirect()->route('notes.index')->with('success', 'Note created successfully.');
+        return redirect()->route('notes.index')->with(['success', 'Note created successfully.']);
     }
     
     public function edit($id)
@@ -114,7 +114,7 @@ class NotesController extends Controller
             'content' => $request->content,
         ]);
 
-        return response()->json(['success' => 'Note renamed successfully.']);
+        return redirect()->route('notes.index')->with(['success' => 'Note renamed successfully.']);
     }
 
     public function destroy(Note $note)
