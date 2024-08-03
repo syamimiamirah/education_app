@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NotesController;
+use App\Http\Controllers\CalendarController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,6 +43,14 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/pomodoro', function (){ return view('pomodoro.index');})->name('pomodoro.index');
+});
+
+Route::middleware('auth')->group(function () {
+    Route::get('/calendar', [CalendarController::class, 'index'])->name('calendar.index');
+    Route::post('/calendar', [CalendarController::class, 'store'])->name('calendar.store');
+    Route::get('/calendar/{task}/edit', [CalendarController::class, 'edit'])->name('calendar.edit');
+    Route::put('/calendar/{task}', [CalendarController::class, 'update'])->name('calendar.update');
+    Route::delete('/calendar/{task}', [CalendarController::class, 'destroy'])->name('calendar.destroy');
 });
 
 require __DIR__.'/auth.php';
