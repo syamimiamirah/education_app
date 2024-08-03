@@ -8,42 +8,71 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
 
-                    <!-- Task Management Section -->
-                    <div class="mb-8">
-                        <h3 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-4">Today's Tasks</h3>
+                <!-- Task Management Section -->
+                <div class="p-6 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 mb-8">
+                    <div class="bg-gray-100 dark:bg-gray-700 p-6 rounded-md shadow-md">
+                        <h3 class="text-2xl font-semibold text-gray-800 dark:text-gray-200 mb-6">Today's Tasks</h3>
                         <form id="task-form" class="mb-6">
-                            <div class="flex space-x-4">
+                            <div class="flex flex-col sm:flex-row gap-4">
                                 <input id="task-name" type="text" placeholder="Task Name" class="flex-1 p-3 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm" required>
                                 <input id="task-pomodoros" type="number" placeholder="Pomodoros" class="w-32 p-3 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm" min="1" required>
+                                <div class="flex justify-center">
                                 <x-primary-button type="button" onclick="addTask()">Add Task</x-primary-button>
                             </div>
+                        </div>
                         </form>
                         <div id="task-list" class="space-y-4">
                             <!-- Tasks will be appended here -->
                         </div>
                     </div>
+                </div>
 
-                    <!-- Timer Section -->
-                    <div class="text-center mb-8">
+                <!-- Timer Section -->
+                <div class="p-6 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 mb-8">
+                    <div class="bg-gray-100 dark:bg-gray-700 p-6 rounded-md shadow-md text-center">
                         <h3 class="text-4xl font-bold text-gray-800 dark:text-gray-200 mb-6" id="timer">25:00</h3>
-                        <div class="flex justify-center mb-4">
-                            <x-primary-button type="button" onclick="startTimer()" class="mr-4">Start</x-primary-button>
+                        <div class="flex justify-center gap-4 mb-6">
+                            <x-primary-button type="button" onclick="startTimer()">Start</x-primary-button>
                             <x-secondary-button type="button" onclick="resetTimer()">Reset</x-secondary-button>
                         </div>
                     </div>
+                </div>
 
-                    <!-- Breaks Section -->
-                    <div class="text-center">
+                <!-- Breaks Section -->
+                <div class="p-6 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 mb-8">
+                    <div class="bg-gray-100 dark:bg-gray-700 p-6 rounded-md shadow-md text-center">
                         <h4 class="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-4">Break Time</h4>
-                        <div class="flex justify-center">
-                            <x-primary-button type="button" onclick="setShortBreak()" class="mr-4">Short Break (5 mins)</x-primary-button>
+                        <div class="flex justify-center gap-4">
+                            <x-primary-button type="button" onclick="setShortBreak()">Short Break (5 mins)</x-primary-button>
                             <x-primary-button type="button" onclick="setLongBreak()">Long Break (15 mins)</x-primary-button>
                         </div>
                     </div>
-
                 </div>
+
+                <!-- Information Section -->
+                <div class="p-6 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 mb-8">
+                    <div class="bg-gray-100 dark:bg-gray-700 p-6 rounded-md shadow-md">
+                    <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-4">What is Pomofocus?</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">
+                        Pomofocus is a customizable pomodoro timer that works on desktop & mobile browser. The aim of this app is to help you focus on any task you are working on, such as study, writing, or coding. This app is inspired by the Pomodoro Technique which is a time management method developed by Francesco Cirillo.
+                    </p>
+                    <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-4">What is Pomodoro Technique?</h3>
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">
+                        The Pomodoro Technique was created by Francesco Cirillo for a more productive way to work and study. The technique uses a timer to break down work into intervals, traditionally 25 minutes in length, separated by short breaks. Each interval is known as a pomodoro, from the Italian word for 'tomato', after the tomato-shaped kitchen timer that Cirillo used as a university student. - Wikipedia
+                    </p>
+                    <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-4">How to use the Pomodoro Timer?</h3>
+                    <ul class="list-disc list-inside text-gray-700 dark:text-gray-300">
+                        <li>1. Add tasks to work on today</li>
+                        <li>2. Set estimate pomodoros (1 = 25min of work) for each task</li>
+                        <li>3. Select a task to work on</li>
+                        <li>4. Start timer and focus on the task for 25 minutes</li>
+                        <li>5. Take a break for 5 minutes when the alarm rings</li>
+                        <li>6. Iterate 3-5 times until you finish the tasks</li>
+                    </ul>
+                </div>
+            </div>
+
             </div>
         </div>
     </div>

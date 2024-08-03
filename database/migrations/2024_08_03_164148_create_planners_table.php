@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('planners', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->text('description')->nullable(); // Nullable if not all entries will have a description
+            $table->datetime('deadline')->nullable(); // Nullable if the deadline is optional
+            $table->string('status')->default('pending');
             $table->timestamps();
         });
     }
