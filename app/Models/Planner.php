@@ -18,7 +18,8 @@ class Planner extends Model
         'user_id', 
         'title', 
         'description',
-        'deadline',
+        'start_date',
+        'end_date',
         'status',
     ];
 

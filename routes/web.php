@@ -47,6 +47,7 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware('auth')->group(function () {
     Route::get('/calendar', [CalendarController::class, 'index'])->name('calendar.index');
+    Route::get('/calendar/create', [CalendarController::class, 'create'])->name('calendar.create');
     Route::post('/calendar', [CalendarController::class, 'store'])->name('calendar.store');
     Route::get('/calendar/{task}/edit', [CalendarController::class, 'edit'])->name('calendar.edit');
     Route::put('/calendar/{task}', [CalendarController::class, 'update'])->name('calendar.update');
