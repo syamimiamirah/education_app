@@ -13,11 +13,15 @@ return new class extends Migration
     {
         Schema::create('planners', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
             $table->string('title');
             $table->text('description')->nullable(); // Nullable if not all entries will have a description
-            $table->datetime('deadline')->nullable(); // Nullable if the deadline is optional
-            $table->string('status')->default('pending');
+            $table->datetime('start_date');
+            $table->datetime('end_date');
+            $table->string('status')->default('Pending');
             $table->timestamps();
+            // Foreign key constraint
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
