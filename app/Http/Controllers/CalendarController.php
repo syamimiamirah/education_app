@@ -17,10 +17,24 @@ class CalendarController extends Controller
      */
     public function index(Request $request): View
     {
+        // Get the date filter from the request
+        $date = $request->input('date'); // You can pass a specific date from the front-end
+        $user = $request->user();
+
+        // Query tasks based on the date
+        $tasks = Planner::where('user_id', $user->id)
+                        ->when($date, function ($query, $date) {
+                            return $query->whereDate('start_date', $date);
+                        })
+                        ->orderBy('start_date', 'asc')
+                        ->get();
+
         return view('calendar.index', [
-            'user' => $request->user(),
+            'user' => $user,
+            'tasks' => $tasks,
         ]);
     }
+
 
     public function create()
     {
