@@ -39,6 +39,14 @@
                         <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-4">Tasks</h3>
                         <ul id="task-list" class="space-y-4">
                             <!-- Tasks will be appended here -->
+                            @foreach ($tasks as $task)
+                                <li class="bg-white dark:bg-gray-700 shadow-md rounded-md p-4">
+                                    <h4 class="text-lg font-semibold">{{ $task->title }}</h4>
+                                    <p class="text-sm text-gray-500 dark:text-gray-400">{{ $task->description }}</p>
+                                    <p class="text-sm text-gray-500 dark:text-gray-400">From: {{ $task->start_date }} To: {{ $task->end_date }}</p>
+                                    <p class="text-sm text-gray-500 dark:text-gray-400">Status: {{ $task->status }}</p>
+                                </li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>
@@ -123,6 +131,12 @@
             timeZone: 'UTC',
             events: '/events',
             editable: true,
+
+            dateClick: function(info) {
+                var selectedDate = info.dateStr; // Get the selected date in YYYY-MM-DD format
+                fetchTasksForDate(selectedDate);
+            },
+
 
             // Deleting The Event
             eventContent: function(info) {
